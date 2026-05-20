@@ -54,25 +54,9 @@
   }
 
   .nav-logo-img {
-    width: 52px; height: 52px;
-    background: linear-gradient(135deg, var(--orange), #c94000);
-    border-radius: 4px;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 28px; font-weight: 900;
-    color: var(--white);
-    letter-spacing: -2px;
-    border: 2px solid rgba(255,94,0,.4);
-    /* LOGO PLACEHOLDER — replace with: <img src="your-logo.png"> */
-    position: relative; overflow: hidden;
-  }
-  .nav-logo-img::after {
-    content: 'LOGO';
-    position: absolute; inset: 0;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 9px; font-weight: 700; letter-spacing: 1px;
-    color: rgba(255,255,255,.5);
-    background: rgba(0,0,0,.3);
+    height: 48px;
+    width: auto;
+    display: flex; align-items: center;
   }
 
   .nav-brand {
@@ -126,7 +110,7 @@
     min-height: 100vh;
     display: flex; align-items: center; justify-content: center;
     overflow: hidden;
-    padding-top: 72px;
+    padding-top: 50px;
   }
 
   .hero-bg {
@@ -351,23 +335,31 @@
   .cat-card:hover { transform: translateY(-4px); border-color: rgba(255,94,0,.3); }
   .cat-card:hover .cat-img::after { opacity: .6; }
 
-  .cat-img {
-    position: absolute; inset: 0;
-    background: linear-gradient(135deg, var(--dark3), var(--dark));
-    display: flex; align-items: center; justify-content: center;
-  }
-  .cat-img::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(0deg, rgba(255,94,0,.4) 0%, transparent 60%);
-    opacity: .3; transition: opacity .3s;
-  }
-  .cat-img-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 12px; font-weight: 700; letter-spacing: 3px;
-    color: rgba(255,255,255,.2); text-transform: uppercase;
-    text-align: center;
-  }
+.cat-img {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+.cat-img img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+.cat-img::after {
+    content:'';
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+      0deg,
+      rgba(255,94,0,.4) 0%,
+      transparent 60%
+    );
+    opacity:.3;
+    transition:opacity .3s;
+}
 
   .cat-body {
     position: relative; z-index: 2;
@@ -409,69 +401,54 @@
     gap: 20px;
   }
 
-  .product-card {
-    background: var(--dark2);
-    border: 1px solid rgba(255,255,255,.06);
-    border-radius: 4px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: transform .25s, border-color .25s, box-shadow .25s;
-    position: relative;
-  }
-  .product-card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(255,94,0,.35);
-    box-shadow: 0 12px 40px rgba(255,94,0,.12);
-  }
+.product-card{
+    display:flex;
+    flex-direction:column;
+}
 
-  .product-img {
-    aspect-ratio: 3/4;
-    background: var(--dark3);
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    gap: 8px;
-    position: relative;
-    border-bottom: 1px solid rgba(255,255,255,.05);
-    overflow: hidden;
-  }
+.product-img{
+    height:420px;
+    position:relative;
+    overflow:hidden;
+}
+
+.product-image{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.product-info{
+    padding:14px;
+}
+
+.product-img-num{
+    position:absolute;
+    bottom:15px;
+    left:15px;
+    z-index:2;
+}
+
+.product-hover-overlay{
+    position:absolute;
+    inset:0;
+    z-index:3;
+}
 
   /* Subtle diagonal stripe pattern on placeholders */
-  .product-img::before {
-    content: '';
-    position: absolute; inset: 0;
-    background-image: repeating-linear-gradient(
-      -45deg,
-      transparent,
-      transparent 18px,
-      rgba(255,255,255,.02) 18px,
-      rgba(255,255,255,.02) 19px
+.product-img::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+      to top,
+      rgba(0,0,0,.45),
+      transparent
     );
-  }
-
-  .product-img-num {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 36px; font-weight: 900;
-    color: rgba(255,255,255,.08);
-    line-height: 1;
-    position: relative; z-index: 1;
-  }
-
-  .product-img-tag {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 10px; font-weight: 700; letter-spacing: 2px;
-    color: rgba(255,255,255,.2); text-transform: uppercase;
-    position: relative; z-index: 1;
-    text-align: center; padding: 0 12px;
-  }
-
-  .product-img-icon {
-    width: 40px; height: 40px;
-    border: 1.5px dashed rgba(255,94,0,.3);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px;
-    position: relative; z-index: 1;
-  }
+    z-index:1;
+}
 
   .product-badge {
     position: absolute; top: 10px; left: 10px; z-index: 2;
@@ -539,13 +516,6 @@
     line-height: 1.1;
   }
 
-  .product-colors {
-    display: flex; gap: 5px; align-items: center;
-  }
-  .color-dot {
-    width: 11px; height: 11px; border-radius: 50%;
-    border: 1.5px solid rgba(255,255,255,.2);
-  }
 
   /* ─── LOAD MORE ─── */
   .load-more-wrap { text-align: center; margin-top: 52px; }
@@ -581,119 +551,6 @@
   }
   .feature-desc { font-size: 13px; color: var(--silver-dark); line-height: 1.5; font-weight: 500; }
 
-  /* ─── GALLERY / LOOKBOOK ─── */
-  .lookbook { background: var(--black); padding: 96px 48px; }
-  .lookbook-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: auto;
-    gap: 12px;
-    margin-top: 0;
-  }
-  .look-cell {
-    background: var(--dark2);
-    border: 1px solid rgba(255,255,255,.05);
-    border-radius: 3px;
-    overflow: hidden;
-    position: relative;
-    cursor: pointer;
-    transition: transform .25s, border-color .25s;
-  }
-  .look-cell:hover { transform: scale(1.015); border-color: rgba(255,94,0,.25); z-index: 2; }
-  .look-cell.tall { grid-row: span 2; }
-  .look-cell.wide { grid-column: span 2; }
-
-  .look-cell-inner {
-    width: 100%; height: 100%; min-height: 180px;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    gap: 6px;
-    background: linear-gradient(135deg, var(--dark3) 0%, var(--dark2) 100%);
-    position: relative;
-  }
-  .look-cell.tall .look-cell-inner { min-height: 372px; }
-  .look-cell.wide .look-cell-inner { min-height: 220px; }
-
-  .look-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px; font-weight: 700; letter-spacing: 3px;
-    color: rgba(255,255,255,.18); text-transform: uppercase;
-    text-align: center; padding: 0 16px;
-  }
-  .look-num {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 28px; font-weight: 900;
-    color: rgba(255,255,255,.06);
-  }
-  .look-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(0deg, rgba(255,94,0,.3) 0%, transparent 50%);
-    opacity: 0; transition: opacity .25s;
-  }
-  .look-cell:hover .look-overlay { opacity: 1; }
-
-  /* ─── BRAND STORY ─── */
-  .brand-story {
-    background: var(--dark);
-    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
-    align-items: center;
-    padding: 96px 48px;
-  }
-  .story-visual {
-    position: relative;
-  }
-  .story-img-box {
-    background: var(--dark2);
-    border: 1px solid rgba(255,255,255,.07);
-    border-radius: 4px;
-    aspect-ratio: 4/5;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    gap: 12px;
-    position: relative; overflow: hidden;
-  }
-  .story-img-box::before {
-    content: '';
-    position: absolute; top: -40%; left: -40%;
-    width: 180%; height: 180%;
-    background: radial-gradient(ellipse at center, rgba(255,94,0,.08), transparent 60%);
-  }
-  .story-img-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 12px; font-weight: 700; letter-spacing: 3px;
-    color: rgba(255,255,255,.18); text-transform: uppercase;
-    position: relative; z-index: 1; text-align: center; padding: 0 20px;
-  }
-  .story-accent {
-    position: absolute;
-    bottom: -20px; right: -20px;
-    width: 100px; height: 100px;
-    background: var(--orange);
-    clip-path: polygon(0 100%, 100% 0, 100% 100%);
-    opacity: .7;
-  }
-  .story-text .section-title { margin-bottom: 24px; }
-  .story-body {
-    font-size: 15px; font-weight: 500; line-height: 1.7;
-    color: var(--silver-dark); margin-bottom: 20px;
-  }
-  .story-values {
-    display: flex; flex-direction: column; gap: 14px; margin-top: 32px;
-  }
-  .story-value {
-    display: flex; align-items: center; gap: 16px;
-    padding: 14px 18px;
-    background: rgba(255,255,255,.03);
-    border-left: 3px solid var(--orange);
-    border-radius: 0 3px 3px 0;
-  }
-  .story-value-icon { font-size: 20px; }
-  .story-value-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 16px; font-weight: 800; letter-spacing: 1px;
-    color: var(--white); text-transform: uppercase;
-  }
-  .story-value-desc { font-size: 13px; color: var(--silver-dark); }
 
   /* ─── TESTIMONIALS ─── */
   .testimonials { background: var(--black); padding: 96px 48px; }
@@ -913,7 +770,6 @@
     .categories-grid { grid-template-columns: repeat(2, 1fr); }
     .features-grid { grid-template-columns: repeat(2, 1fr); }
     .footer-grid { grid-template-columns: 1fr 1fr; }
-    .brand-story { grid-template-columns: 1fr; gap: 40px; }
     .story-visual { display: none; }
   }
   @media (max-width: 768px) {
@@ -934,8 +790,6 @@
     footer { padding: 56px 20px 24px; }
   }
   @media (max-width: 480px) {
-    .products-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
-    .lookbook-grid { grid-template-columns: 1fr; }
     .look-cell.tall { grid-row: span 1; }
   }
 
@@ -970,13 +824,12 @@
 <!-- ─── NAVBAR ─── -->
 <nav>
   <div class="nav-logo">
-    <div class="nav-logo-img"></div>
-    <span class="nav-brand">STREAK<span>Z</span></span>
-  </div>
+   <img src="images/streakz-Photoroom.png" class="nav-logo-img" alt="Streakz Logo">
+   <div class="nav-brand">STREAK<span>Z</span></div>
+</div>
   <ul class="nav-links">
     <li><a href="#products">Shop</a></li>
     <li><a href="#categories">Categories</a></li>
-    <li><a href="#lookbook">Lookbook</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#contact" class="nav-cta">Contact Us</a></li>
   </ul>
@@ -990,7 +843,6 @@
   <button class="mobile-nav-close" id="mobileClose">✕</button>
   <a href="#products" onclick="closeMobileNav()">Shop</a>
   <a href="#categories" onclick="closeMobileNav()">Categories</a>
-  <a href="#lookbook" onclick="closeMobileNav()">Lookbook</a>
   <a href="#about" onclick="closeMobileNav()">About</a>
   <a href="#contact" onclick="closeMobileNav()">Contact</a>
 </div>
@@ -1002,11 +854,7 @@
   <div class="hero-content">
     <div class="hero-eyebrow">New Collection 2026 · Premium Sportswear</div>
 
-    <!-- LOGO PLACEHOLDER — swap this div with <img src="your-logo.png" style="width:220px;height:auto"> -->
-    <div class="hero-logo-placeholder">
-      <span>Your Logo Here</span>
-      <span>Replace with STREAKZ logo image</span>
-    </div>
+    <img src="images/streakz-Photoroom.png" style="width:220px;height:auto;margin:0 auto 32px;display:block">
 
     <h1 class="hero-title">
       STREAK<span class="orange">Z</span>
@@ -1019,7 +867,7 @@
       <a href="#about" class="btn-outline">Our Story</a>
     </div>
     <div class="hero-stats">
-      <div class="stat"><div class="stat-num">50+</div><div class="stat-label">Products</div></div>
+      <div class="stat"><div class="stat-num">50+</div><div class="stat-label">Designs</div></div>
       <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Performance</div></div>
       <div class="stat"><div class="stat-num">2K+</div><div class="stat-label">Athletes</div></div>
       <div class="stat"><div class="stat-num">5★</div><div class="stat-label">Rated</div></div>
@@ -1032,25 +880,21 @@
   <div class="marquee-track">
     <span class="marquee-item">T-Shirts</span>
     <span class="marquee-item">Track Pants</span>
-    <span class="marquee-item">Hoodies</span>
     <span class="marquee-item">Shorts</span>
     <span class="marquee-item">Jerseys</span>
     <span class="marquee-item">Move. Perform. Inspire.</span>
     <span class="marquee-item">T-Shirts</span>
     <span class="marquee-item">Track Pants</span>
-    <span class="marquee-item">Hoodies</span>
     <span class="marquee-item">Shorts</span>
     <span class="marquee-item">Jerseys</span>
     <span class="marquee-item">Move. Perform. Inspire.</span>
     <span class="marquee-item">T-Shirts</span>
     <span class="marquee-item">Track Pants</span>
-    <span class="marquee-item">Hoodies</span>
     <span class="marquee-item">Shorts</span>
     <span class="marquee-item">Jerseys</span>
     <span class="marquee-item">Move. Perform. Inspire.</span>
     <span class="marquee-item">T-Shirts</span>
     <span class="marquee-item">Track Pants</span>
-    <span class="marquee-item">Hoodies</span>
     <span class="marquee-item">Shorts</span>
     <span class="marquee-item">Jerseys</span>
     <span class="marquee-item">Move. Perform. Inspire.</span>
@@ -1062,28 +906,31 @@
   <div class="section-label">Browse By Category</div>
   <div class="section-title">FIND YOUR <span class="outline">GEAR</span></div>
   <div class="divider-line"></div>
+
   <div class="categories-grid reveal">
+
     <div class="cat-card">
-      <div class="cat-img"><div class="cat-img-label">👕 T-Shirt Collection<br>Image Placeholder</div></div>
+      <div class="cat-img">
+        <img src="images/sportswaers.png" alt="Sportswear">
+      </div>
       <div class="cat-body">
-        <div class="cat-name">T-Shirts</div>
-        <div class="cat-sub">Performance Tees · Dry Fit · Graphic</div>
+        <div class="cat-name">Sportswear</div>
+        <div class="cat-sub">T-Shirts · Track Pants · Shorts</div>
       </div>
     </div>
+
     <div class="cat-card">
-      <div class="cat-img"><div class="cat-img-label">👖 Track Pants<br>Image Placeholder</div></div>
+      <div class="cat-img">
+        <img src="images/uniforms.png" alt="Uniforms">
+      </div>
       <div class="cat-body">
-        <div class="cat-name">Track Pants</div>
-        <div class="cat-sub">Slim Fit · Joggers · Pro Series</div>
+        <div class="cat-name">Uniforms</div>
+        <div class="cat-sub">School · College · Club · Corporate</div>
       </div>
     </div>
-    <div class="cat-card">
-      <div class="cat-img"><div class="cat-img-label">🧥 Hoodies & Jackets<br>Image Placeholder</div></div>
-      <div class="cat-body">
-        <div class="cat-name">Hoodies</div>
-        <div class="cat-sub">Fleece · Zip-Up · Oversized</div>
-      </div>
-    </div>
+
+    
+
   </div>
 </section>
 
@@ -1121,11 +968,8 @@
 
   <div class="products-filter">
     <button class="filter-btn active" onclick="filterProducts('all', this)">All</button>
-    <button class="filter-btn" onclick="filterProducts('tshirt', this)">T-Shirts</button>
-    <button class="filter-btn" onclick="filterProducts('track', this)">Track Pants</button>
-    <button class="filter-btn" onclick="filterProducts('hoodie', this)">Hoodies</button>
-    <button class="filter-btn" onclick="filterProducts('shorts', this)">Shorts</button>
-    <button class="filter-btn" onclick="filterProducts('jersey', this)">Jerseys</button>
+    <button class="filter-btn" onclick="filterProducts('sportswears', this)">Sports wears</button>
+    <button class="filter-btn" onclick="filterProducts('teamuniforms', this)">Team Uniforms</button>
   </div>
 
   <div class="products-grid" id="productsGrid">
@@ -1137,66 +981,6 @@
   </div>
 </section>
 
-<!-- ─── LOOKBOOK ─── -->
-<section class="lookbook" id="lookbook">
-  <div class="section-label">Lookbook</div>
-  <div class="section-title">STYLE IN <span class="outline">MOTION</span></div>
-  <div class="divider-line"></div>
-  <div class="lookbook-grid reveal">
-    <div class="look-cell tall"><div class="look-cell-inner"><div class="look-num">L1</div><div class="look-label">Lookbook Photo 1<br>Full Collection Shoot</div></div><div class="look-overlay"></div></div>
-    <div class="look-cell"><div class="look-cell-inner"><div class="look-num">L2</div><div class="look-label">Lookbook Photo 2<br>Action Shot</div></div><div class="look-overlay"></div></div>
-    <div class="look-cell"><div class="look-cell-inner"><div class="look-num">L3</div><div class="look-label">Lookbook Photo 3<br>Detail Shot</div></div><div class="look-overlay"></div></div>
-    <div class="look-cell wide"><div class="look-cell-inner"><div class="look-num">L4</div><div class="look-label">Lookbook Photo 4 · Wide Banner Shot</div></div><div class="look-overlay"></div></div>
-    <div class="look-cell"><div class="look-cell-inner"><div class="look-num">L5</div><div class="look-label">Lookbook Photo 5<br>Lifestyle</div></div><div class="look-overlay"></div></div>
-    <div class="look-cell"><div class="look-cell-inner"><div class="look-num">L6</div><div class="look-label">Lookbook Photo 6<br>Track Series</div></div><div class="look-overlay"></div></div>
-    <div class="look-cell tall"><div class="look-cell-inner"><div class="look-num">L7</div><div class="look-label">Lookbook Photo 7<br>Studio Portrait</div></div><div class="look-overlay"></div></div>
-    <div class="look-cell"><div class="look-cell-inner"><div class="look-num">L8</div><div class="look-label">Lookbook Photo 8<br>Movement</div></div><div class="look-overlay"></div></div>
-    <div class="look-cell"><div class="look-cell-inner"><div class="look-num">L9</div><div class="look-label">Lookbook Photo 9<br>On Field</div></div><div class="look-overlay"></div></div>
-  </div>
-</section>
-
-<!-- ─── BRAND STORY ─── -->
-<section class="brand-story" id="about">
-  <div class="story-visual">
-    <div class="story-img-box">
-      <!-- BRAND IMAGE PLACEHOLDER — replace with <img src="brand-image.jpg"> -->
-      <div class="look-num" style="font-size:48px;color:rgba(255,94,0,.15)">SZ</div>
-      <div class="story-img-label">Brand Story Image<br>Replace with your photo</div>
-    </div>
-    <div class="story-accent"></div>
-  </div>
-  <div class="story-text reveal">
-    <div class="section-label">Our Story</div>
-    <div class="section-title">BUILT FOR<br><span class="outline">CHAMPIONS</span></div>
-    <div class="divider-line"></div>
-    <p class="story-body">STREAKZ was born from a passion for sport and a relentless drive to perform at the highest level. We believe that what you wear is part of how you compete — and we built this brand to give every athlete the edge they deserve.</p>
-    <p class="story-body">From the streets to the track, from the gym to the field — STREAKZ is engineered for those who refuse to settle. Every stitch, every fabric, every design is crafted with one goal: to help you move faster, perform stronger, and inspire those around you.</p>
-    <div class="story-values">
-      <div class="story-value">
-        <div class="story-value-icon">⚡</div>
-        <div>
-          <div class="story-value-title">Speed</div>
-          <div class="story-value-desc">Built for velocity — lightweight, aerodynamic, unstoppable.</div>
-        </div>
-      </div>
-      <div class="story-value">
-        <div class="story-value-icon">🔩</div>
-        <div>
-          <div class="story-value-title">Strength</div>
-          <div class="story-value-desc">Premium materials engineered to endure the hardest sessions.</div>
-        </div>
-      </div>
-      <div class="story-value">
-        <div class="story-value-icon">🎯</div>
-        <div>
-          <div class="story-value-title">Focus</div>
-          <div class="story-value-desc">Distraction-free design that keeps you locked in and performing.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ─── TESTIMONIALS ─── -->
 <section class="testimonials">
   <div class="section-label">What Athletes Say</div>
@@ -1205,18 +989,18 @@
   <div class="testi-grid reveal">
     <div class="testi-card">
       <div class="testi-stars">★★★★★</div>
-      <p class="testi-text">"The STREAKZ track pants are on another level. Lightweight, stretchy, and they look absolutely fire on the field. I won't train in anything else now."</p>
+      <p class="testi-text">“The quality and comfort of these jerseys are outstanding. Our team felt confident and performed better on the field.”</p>
       <div class="testi-author">
         <div class="testi-avatar">RK</div>
-        <div><div class="testi-name">Rahul K.</div><div class="testi-role">Sprinter · Chennai</div></div>
+        <div><div class="testi-name">Rahul K</div><div class="testi-role">Sprinter · Chennai</div></div>
       </div>
     </div>
     <div class="testi-card">
       <div class="testi-stars">★★★★★</div>
-      <p class="testi-text">"Ordered 3 tees and a jogger. The quality is insane for the price. The orange and black colourway is so clean. Already getting compliments at the gym."</p>
+      <p class="testi-text">“Perfect blend of style and performance. The fabric is breathable, and the design truly stands out.”</p>
       <div class="testi-author">
         <div class="testi-avatar">AM</div>
-        <div><div class="testi-name">Arun M.</div><div class="testi-role">Powerlifter · Bangalore</div></div>
+        <div><div class="testi-name">Arun M</div><div class="testi-role">Powerlifter · Bangalore</div></div>
       </div>
     </div>
     <div class="testi-card">
@@ -1224,7 +1008,7 @@
       <p class="testi-text">"Finally a sports brand from India that matches international quality. The STREAKZ hoodie is my go-to for every morning run. Absolute comfort and style."</p>
       <div class="testi-author">
         <div class="testi-avatar">PV</div>
-        <div><div class="testi-name">Priya V.</div><div class="testi-role">Marathon Runner · Mumbai</div></div>
+        <div><div class="testi-name">Priya V</div><div class="testi-role">Marathon Runner · Mumbai</div></div>
       </div>
     </div>
   </div>
@@ -1235,8 +1019,8 @@
   <h2 class="cta-title">READY TO<br>PERFORM?</h2>
   <p class="cta-sub">Reach out to order, enquire, or customise your STREAKZ gear</p>
   <div class="cta-btns">
-    <a href="https://wa.me/919999999999?text=Hi%20STREAKZ!%20I%27m%20interested%20in%20your%20collection." class="btn-white" target="_blank">💬 WhatsApp Us</a>
-    <a href="tel:+919999999999" class="btn-dark">📞 Call Now</a>
+    <a href="https://wa.me/919069474777?text=Hi%20STREAKZ!%20I%27m%20interested%20in%20your%20collection." class="btn-white" target="_blank">💬 WhatsApp Us</a>
+    <a href="tel:+919069474777" class="btn-dark">📞 Call Now</a>
   </div>
 </section>
 
@@ -1251,58 +1035,45 @@
         <a class="social-btn" href="#" title="Instagram">📸</a>
         <a class="social-btn" href="#" title="Facebook">📘</a>
         <a class="social-btn" href="#" title="YouTube">▶️</a>
-        <a class="social-btn" href="https://wa.me/919999999999" title="WhatsApp" target="_blank">💬</a>
+        <a class="social-btn" href="https://wa.me/9199069474777" title="WhatsApp" target="_blank">💬</a>
       </div>
     </div>
     <div>
       <div class="footer-col-title">Quick Links</div>
       <ul class="footer-links">
-        <li><a href="#products">Shop All</a></li>
-        <li><a href="#categories">T-Shirts</a></li>
-        <li><a href="#categories">Track Pants</a></li>
-        <li><a href="#categories">Hoodies</a></li>
-        <li><a href="#lookbook">Lookbook</a></li>
-        <li><a href="#about">Our Story</a></li>
-      </ul>
-    </div>
-    <div>
-      <div class="footer-col-title">Support</div>
-      <ul class="footer-links">
-        <li><a href="#">Size Guide</a></li>
-        <li><a href="#">Care Instructions</a></li>
-        <li><a href="#">Bulk / Team Orders</a></li>
-        <li><a href="#">Custom Printing</a></li>
-        <li><a href="#">FAQs</a></li>
+        <li><a href="#products">All Products</a></li>
+        <li><a href="#products">Sports wears</a></li>
+        <li><a href="#products">Team Uniforms</a></li>
+        <li><a href="#products">gym wears</a></li>
       </ul>
     </div>
     <div>
       <div class="footer-col-title">Contact</div>
-      <div class="footer-contact-item"><span class="footer-contact-icon">📞</span> +91 99999 99999</div>
+      <div class="footer-contact-item"><span class="footer-contact-icon">📞</span> +91 90694 74777</div>
       <div class="footer-contact-item"><span class="footer-contact-icon">💬</span> WhatsApp Us</div>
-      <div class="footer-contact-item"><span class="footer-contact-icon">📧</span> hello@streakz.in</div>
-      <div class="footer-contact-item"><span class="footer-contact-icon">📍</span> Chennai, Tamil Nadu</div>
+      <div class="footer-contact-item"><span class="footer-contact-icon">📧</span> streakzsports@gmail.com</div>
+      <div class="footer-contact-item"><span class="footer-contact-icon">📍</span> Erode, Tamil Nadu</div>
       <div style="margin-top:20px">
-        <a href="https://wa.me/919999999999?text=Hi%20STREAKZ!" class="btn-primary" target="_blank" style="font-size:13px;padding:10px 22px">WhatsApp Order</a>
+        <a href="https://wa.me/919069474777?text=Hi%20STREAKZ!" class="btn-primary" target="_blank" style="font-size:13px;padding:10px 22px">WhatsApp Order</a>
       </div>
     </div>
   </div>
   <div class="footer-bottom">
-    <div class="footer-copy">© 2026 <span>STREAKZ</span>. All rights reserved. Made with ⚡ in India.</div>
+    <div class="footer-copy">© 2026 <span>STREAKZ</span>. All rights reserved. Made by Vijeykrishnaa.</div>
     <div class="footer-copy">Privacy Policy · Terms of Use</div>
   </div>
 </footer>
 
-<!-- ─── FLOATING BUTTONS ─── -->
 <div class="floating-btns">
   <div class="fab-row">
     <div class="fab-label">Chat on WhatsApp</div>
-    <a href="https://wa.me/919999999999?text=Hi%20STREAKZ!%20I%27m%20interested%20in%20your%20products." class="fab fab-whatsapp" target="_blank" title="WhatsApp">
+    <a href="https://wa.me/919069474777?text=Hi%20STREAKZ!%20I%27m%20interested%20in%20your%20products." class="fab fab-whatsapp" target="_blank" title="WhatsApp">
       <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
     </a>
   </div>
   <div class="fab-row">
     <div class="fab-label">Call Us Now</div>
-    <a href="tel:+919999999999" class="fab fab-call" title="Call">
+    <a href="tel:+919069474777" class="fab fab-call" title="Call">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
     </a>
   </div>
@@ -1312,63 +1083,52 @@
 <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <script>
-// ─── PRODUCT DATA (50 products) ───
 const products = [
-  // T-Shirts (1–20)
-  { id:1,  name:'STREAKZ Classic Tee',       category:'tshirt',  badge:'new',     colors:['#FF5E00','#111','#888'],   icon:'👕', cat:'T-Shirt' },
-  { id:2,  name:'Performance Dry-Fit Tee',   category:'tshirt',  badge:'hot',     colors:['#111','#888','#FF5E00'],   icon:'👕', cat:'T-Shirt' },
-  { id:3,  name:'Speed Graphic Tee',         category:'tshirt',  badge:'',        colors:['#FF5E00','#C0C0C0'],       icon:'👕', cat:'T-Shirt' },
-  { id:4,  name:'Pro Training Tee',          category:'tshirt',  badge:'new',     colors:['#222','#FF5E00'],          icon:'👕', cat:'T-Shirt' },
-  { id:5,  name:'Streakz Lightning Tee',     category:'tshirt',  badge:'',        colors:['#111','#C0C0C0','#FF5E00'],icon:'👕', cat:'T-Shirt' },
-  { id:6,  name:'Urban Athletic Tee',        category:'tshirt',  badge:'hot',     colors:['#888','#111'],             icon:'👕', cat:'T-Shirt' },
-  { id:7,  name:'Elite Series Tee',          category:'tshirt',  badge:'limited', colors:['#FF5E00','#111'],          icon:'👕', cat:'T-Shirt' },
-  { id:8,  name:'Strike Oversized Tee',      category:'tshirt',  badge:'new',     colors:['#222','#C0C0C0'],          icon:'👕', cat:'T-Shirt' },
-  { id:9,  name:'Game Day Tee',              category:'tshirt',  badge:'',        colors:['#FF5E00'],                 icon:'👕', cat:'T-Shirt' },
-  { id:10, name:'Compression Base Tee',      category:'tshirt',  badge:'',        colors:['#111','#888'],             icon:'👕', cat:'T-Shirt' },
-  // Track Pants (11–25)
-  { id:11, name:'Pro Slim Track Pants',      category:'track',   badge:'new',     colors:['#111','#FF5E00'],          icon:'👖', cat:'Track Pants' },
-  { id:12, name:'Speed Jogger Pants',        category:'track',   badge:'hot',     colors:['#888','#FF5E00','#111'],   icon:'👖', cat:'Track Pants' },
-  { id:13, name:'Elite Tapered Track',       category:'track',   badge:'',        colors:['#FF5E00','#111'],          icon:'👖', cat:'Track Pants' },
-  { id:14, name:'Urban Cargо Track',         category:'track',   badge:'limited', colors:['#222','#C0C0C0'],          icon:'👖', cat:'Track Pants' },
-  { id:15, name:'Strike Running Pants',      category:'track',   badge:'new',     colors:['#111','#888','#FF5E00'],   icon:'👖', cat:'Track Pants' },
-  { id:16, name:'Athletic Flex Jogger',      category:'track',   badge:'',        colors:['#FF5E00','#111'],          icon:'👖', cat:'Track Pants' },
-  { id:17, name:'Pro Series Track Pants',    category:'track',   badge:'hot',     colors:['#888','#FF5E00'],          icon:'👖', cat:'Track Pants' },
-  { id:18, name:'Game Time Track Pants',     category:'track',   badge:'',        colors:['#111','#C0C0C0'],          icon:'👖', cat:'Track Pants' },
-  { id:19, name:'Compression Track Pants',   category:'track',   badge:'new',     colors:['#FF5E00','#111'],          icon:'👖', cat:'Track Pants' },
-  { id:20, name:'Signature Jogger',          category:'track',   badge:'limited', colors:['#C0C0C0','#111'],          icon:'👖', cat:'Track Pants' },
-  // Hoodies (21–35)
-  { id:21, name:'Streakz Pullover Hoodie',   category:'hoodie',  badge:'new',     colors:['#111','#FF5E00'],          icon:'🧥', cat:'Hoodie' },
-  { id:22, name:'Pro Zip-Up Hoodie',         category:'hoodie',  badge:'hot',     colors:['#888','#FF5E00','#111'],   icon:'🧥', cat:'Hoodie' },
-  { id:23, name:'Fleece Performance Hoodie', category:'hoodie',  badge:'',        colors:['#FF5E00','#111'],          icon:'🧥', cat:'Hoodie' },
-  { id:24, name:'Strike Oversized Hoodie',   category:'hoodie',  badge:'limited', colors:['#222','#C0C0C0'],          icon:'🧥', cat:'Hoodie' },
-  { id:25, name:'Game Day Hoodie',           category:'hoodie',  badge:'new',     colors:['#FF5E00','#888'],          icon:'🧥', cat:'Hoodie' },
-  // Shorts (26–38)
-  { id:26, name:'Speed Training Shorts',     category:'shorts',  badge:'new',     colors:['#111','#FF5E00'],          icon:'🩳', cat:'Shorts' },
-  { id:27, name:'Pro Mesh Shorts',           category:'shorts',  badge:'hot',     colors:['#888','#FF5E00'],          icon:'🩳', cat:'Shorts' },
-  { id:28, name:'Athletic Runner Shorts',    category:'shorts',  badge:'',        colors:['#FF5E00','#111'],          icon:'🩳', cat:'Shorts' },
-  { id:29, name:'Strike 5" Shorts',          category:'shorts',  badge:'limited', colors:['#222','#C0C0C0'],          icon:'🩳', cat:'Shorts' },
-  { id:30, name:'Compression Inner Shorts',  category:'shorts',  badge:'',        colors:['#111','#888'],             icon:'🩳', cat:'Shorts' },
-  { id:31, name:'Game Day Shorts',           category:'shorts',  badge:'new',     colors:['#FF5E00','#111'],          icon:'🩳', cat:'Shorts' },
-  { id:32, name:'Urban Board Shorts',        category:'shorts',  badge:'',        colors:['#888','#FF5E00','#111'],   icon:'🩳', cat:'Shorts' },
-  // Jerseys (33–50)
-  { id:33, name:'Pro Team Jersey',           category:'jersey',  badge:'new',     colors:['#FF5E00','#111'],          icon:'🏆', cat:'Jersey' },
-  { id:34, name:'Strike Football Jersey',    category:'jersey',  badge:'hot',     colors:['#111','#FF5E00'],          icon:'🏆', cat:'Jersey' },
-  { id:35, name:'Cricket Match Jersey',      category:'jersey',  badge:'',        colors:['#FF5E00','#C0C0C0'],       icon:'🏆', cat:'Jersey' },
-  { id:36, name:'Basketball Game Jersey',    category:'jersey',  badge:'limited', colors:['#222','#FF5E00'],          icon:'🏆', cat:'Jersey' },
-  { id:37, name:'Custom Print Jersey',       category:'jersey',  badge:'new',     colors:['#888','#FF5E00','#111'],   icon:'🏆', cat:'Jersey' },
-  { id:38, name:'Running Vest Jersey',       category:'jersey',  badge:'',        colors:['#FF5E00','#111'],          icon:'🏆', cat:'Jersey' },
-  { id:39, name:'Handball Jersey',           category:'jersey',  badge:'hot',     colors:['#111','#888'],             icon:'🏆', cat:'Jersey' },
-  { id:40, name:'Kabaddi Jersey',            category:'jersey',  badge:'new',     colors:['#FF5E00','#C0C0C0'],       icon:'🏆', cat:'Jersey' },
-  { id:41, name:'Volleyball Jersey',         category:'jersey',  badge:'',        colors:['#888','#FF5E00'],          icon:'🏆', cat:'Jersey' },
-  { id:42, name:'Badminton Jersey',          category:'jersey',  badge:'limited', colors:['#111','#FF5E00'],          icon:'🏆', cat:'Jersey' },
-  { id:43, name:'Table Tennis Jersey',       category:'jersey',  badge:'',        colors:['#C0C0C0','#111'],          icon:'🏆', cat:'Jersey' },
-  { id:44, name:'Athletics Singlet',         category:'jersey',  badge:'new',     colors:['#FF5E00','#111'],          icon:'🏆', cat:'Jersey' },
-  { id:45, name:'Cycling Jersey',            category:'jersey',  badge:'hot',     colors:['#888','#FF5E00','#111'],   icon:'🏆', cat:'Jersey' },
-  { id:46, name:'Swimming Rash Guard',       category:'jersey',  badge:'',        colors:['#111','#FF5E00'],          icon:'🏆', cat:'Jersey' },
-  { id:47, name:'Boxing Training Jersey',    category:'jersey',  badge:'limited', colors:['#222','#C0C0C0'],          icon:'🏆', cat:'Jersey' },
-  { id:48, name:'Gym Stringer Vest',         category:'jersey',  badge:'new',     colors:['#FF5E00','#111'],          icon:'🏆', cat:'Jersey' },
-  { id:49, name:'Football Goalkeeper Kit',   category:'jersey',  badge:'hot',     colors:['#888','#FF5E00'],          icon:'🏆', cat:'Jersey' },
-  { id:50, name:'Signature Edition Jersey',  category:'jersey',  badge:'limited', colors:['#FF5E00','#C0C0C0','#111'],icon:'🏆', cat:'Jersey' },
+  { id:1,  name:'fiery red with neon green',         category:'sportswears',   image:'images/product01.png', badge:'new',     colors:['#FF5E00','#111','#888'],    icon:'👕', cat:'sportswears' },
+  { id:2,  name:'silvery grey with red',     category:'sportswears',   image:'images/product02.png', badge:'hot',     colors:['#111','#888','#FF5E00'],    icon:'👕', cat:'sportswears' },
+  { id:3,  name:'agressive tiger with navy ',           category:'sportswears',   image:'images/product03.png', badge:'limited',        colors:['#FF5E00','#C0C0C0'],        icon:'👕', cat:'sportswears' },
+  { id:4,  name:'traffic signals inspired',            category:'sportswears',   image:'images/product04.png',badge:'new',     colors:['#222','#FF5E00'],           icon:'👕', cat:'sportswears' },
+  { id:5,  name:'yellow and green',       category:'sportswears',   image:'images/product05.png',badge:'',        colors:['#111','#C0C0C0','#FF5E00'], icon:'👕', cat:'sportswears' },
+  { id:6,  name:'lightning flash',          category:'sportswears',   image:'images/product06.png',badge:'hot',     colors:['#888','#111'],              icon:'👕', cat:'sportswears' },
+  { id:7,  name:'subtle blue',            category:'sportswears',   image:'images/product07.png',badge:'limited', colors:['#FF5E00','#111'],           icon:'👕', cat:'sportswears' },
+  { id:8,  name:'ash grey with purple',        category:'sportswears',   image:'images/product08.png',badge:'new',     colors:['#222','#C0C0C0'],           icon:'👕', cat:'sportswears' },
+  { id:9,  name:'light grey with royal blue',        category:'sportswears',    image:'images/product09.png',badge:'new',     colors:['#111','#FF5E00'],           icon:'👖', cat:'sportswears' },
+  { id:10, name:'red and yellow',          category:'sportswears',    image:'images/product10.png',badge:'hot',     colors:['#888','#FF5E00','#111'],    icon:'👖', cat:'sportswears' },
+  { id:11, name:'black and red',         category:'sportswears',    image:'images/product11.png',badge:'',        colors:['#FF5E00','#111'],           icon:'👖', cat:'sportswears' },
+  { id:12, name:'white,orange and navy',           category:'sportswears',    image:'images/product12.png',badge:'new', colors:['#222','#C0C0C0'],           icon:'👖', cat:'sportswears' },
+  { id:13, name:'lone wolf with violet',        category:'sportswears',   image:'images/product13.png', badge:'limited',     colors:['#111','#888','#FF5E00'],    icon:'👖', cat:'sportswears' },
+  { id:14, name:'violet and navy',        category:'sportswears',    image:'images/product14.png',badge:'',        colors:['#FF5E00','#111'],           icon:'👖', cat:'sportswears' },
+  { id:15, name:'green and neon green',            category:'sportswears',   image:'images/product15.png', badge:'limited', colors:['#C0C0C0','#111'],           icon:'👖', cat:'sportswears' },
+  { id:16, name:'white ,gold and silver',     category:'sportswears',   image:'images/product16.png',badge:'new',     colors:['#111','#FF5E00'],           icon:'🧥', cat:'sportswears' },
+  { id:17, name:'marron with neon yellow',           category:'sportswears',   image:'images/product17.png',badge:'hot',     colors:['#888','#FF5E00','#111'],    icon:'🧥', cat:'sportswears' },
+  { id:18, name:'black and violet',   category:'sportswears',   image:'images/product18.png',badge:'',        colors:['#FF5E00','#111'],           icon:'🧥', cat:'sportswears' },
+  { id:19, name:'red and black gold ',     category:'sportswears',   image:'images/product19.png',badge:'limited', colors:['#222','#C0C0C0'],           icon:'🧥', cat:'sportswears' },
+  { id:20, name:'navy with yellow ',             category:'sportswears',   image:'images/product20.png',badge:'new',     colors:['#FF5E00','#888'],           icon:'🧥', cat:'sportswears' },
+  { id:21, name:'white with neons',       category:'sportswears',   image:'images/product21.png',badge:'new',     colors:['#111','#FF5E00'],           icon:'🩳', cat:'sportswears' },
+  { id:22, name:'white and orange maxx',             category:'sportswears',   image:'images/product22.png',badge:'hot',     colors:['#888','#FF5E00'],           icon:'🩳', cat:'sportswears' },
+  { id:23, name:'thunder blue with black',      category:'sportswears',   image:'images/product23.png',badge:'',        colors:['#FF5E00','#111'],           icon:'🩳', cat:'sportswears' },
+  { id:24, name:'steel horse with navy blue',            category:'sportswears',   image:'images/product24.png',badge:'limited', colors:['#222','#C0C0C0'],           icon:'🩳', cat:'sportswears' },
+  { id:25, name:'aggressive lion with fiery red ',    category:'sportswears',   image:'images/product25.png',badge:'',        colors:['#111','#888'],              icon:'🩳', cat:'sportswears' },
+  { id:26, name:'black witch with white',             category:'sportswears',   image:'images/product26.png',badge:'new',     colors:['#FF5E00','#111'],           icon:'🩳', cat:'sportswears' },
+  { id:27, name:'STREAKZ Pro Jersey',          category:'teamuniforms',   image:'images/product27.png',badge:'new',     colors:['#FF5E00','#111'],           icon:'🥇', cat:'teamuniforms' },
+  { id:28, name:'Dry-Fit Sport Jersey',        category:'teamuniforms',   image:'images/product28.png',badge:'hot',     colors:['#111','#FF5E00'],           icon:'🥇', cat:'teamuniforms' },
+  { id:29, name:'Sublimation Jersey',          category:'teamuniforms',   image:'images/product29.png',badge:'',        colors:['#FF5E00','#C0C0C0'],        icon:'🥇', cat:'teamuniformsy' },
+  { id:30, name:'Elite Mesh Jersey',           category:'teamuniforms',   image:'images/product30.png',badge:'limited', colors:['#222','#FF5E00'],           icon:'🥇', cat:'teamuniforms' },
+  { id:31, name:'Custom Print Jersey',         category:'teamuniforms',   image:'images/product31.png',badge:'new',     colors:['#888','#FF5E00','#111'],    icon:'🥇', cat:'teamuniforms' },
+  { id:32, name:'Running Vest Jersey',         category:'teamuniforms',   image:'images/product32.png',badge:'',        colors:['#FF5E00','#111'],           icon:'🥇', cat:'teamuniforms' },
+  { id:33, name:'Full Team Uniform Set',       category:'teamuniforms',  image:'images/product33.png',badge:'new',     colors:['#FF5E00','#111'],           icon:'🏅', cat:'teamuniforms' },
+  { id:34, name:'School Sports Uniform',       category:'teamuniforms',  image:'images/product34.png',badge:'hot',     colors:['#111','#888','#FF5E00'],    icon:'🏅', cat:'teamuniforms' },
+  { id:35, name:'College Team Kit',            category:'teamuniforms',  image:'images/product35.png',badge:'',        colors:['#FF5E00','#C0C0C0'],        icon:'🏅', cat:'teamuniforms' },
+  { id:36, name:'Corporate Sports Uniform',    category:'teamuniforms', image:'images/product36.png', badge:'limited', colors:['#222','#FF5E00'],           icon:'🏅', cat:'teamuniforms' },
+  { id:37, name:'Club Kit – Full Set',         category:'teamuniforms',  image:'images/product37.png',badge:'new',     colors:['#888','#FF5E00','#111'],    icon:'🏅', cat:'teamuniforms' },
+  { id:38, name:'Academy Training Uniform',    category:'teamuniforms',  image:'images/product38.png',badge:'',        colors:['#FF5E00','#111'],           icon:'🏅', cat:'teamuniforms' },
+  { id:39, name:'Cricket Match Jersey',        category:'teamuniforms',  image:'images/product39.png',badge:'new',     colors:['#FF5E00','#111'],           icon:'🏏', cat:'teamuniforms' },
+  { id:40, name:'Cricket White Trousers',      category:'teamuniforms',  image:'images/product40.png',badge:'',        colors:['#C0C0C0','#111'],           icon:'🏏', cat:'teamuniforms' },
+  { id:41, name:'Full Cricket Kit Set',        category:'teamuniforms',  image:'images/product41.png',badge:'hot',     colors:['#FF5E00','#C0C0C0','#111'], icon:'🏏', cat:'teamuniforms' },
+  { id:42, name:'T20 Sublimation Jersey',      category:'teamuniforms',  image:'images/product42.png',badge:'limited', colors:['#FF5E00','#111'],           icon:'🏏', cat:'teamuniforms' },
+  { id:43, name:'Cricket Inner Tee',           category:'teamuniforms',  image:'images/product43.png',badge:'',        colors:['#888','#111'],              icon:'🏏', cat:'teamuniforms' },
+  { id:44, name:'Football Home Jersey',        category:'teamuniforms', image:'images/product44.png',badge:'new',     colors:['#FF5E00','#111'],           icon:'⚽', cat:'teamuniforms' },
+  { id:45, name:'Football Away Jersey',        category:'teamuniforms', image:'images/product45.png',badge:'',        colors:['#888','#FF5E00'],           icon:'⚽', cat:'teamuniforms' },
 ];
 
 let currentFilter = 'all';
@@ -1389,24 +1149,38 @@ function renderProducts() {
       : '';
     const colorsHtml = p.colors.map(c => `<div class="color-dot" style="background:${c}"></div>`).join('');
     return `
-      <div class="product-card">
-        <div class="product-img">
-          ${badgeHtml}
-          <div class="product-img-icon">${p.icon}</div>
-          <div class="product-img-num">${String(p.id).padStart(2,'0')}</div>
-          <div class="product-img-tag">Product ${p.id} · ${p.cat}<br>Add your image here</div>
-          <div class="product-hover-overlay">
-            <button class="hover-btn" onclick="openEnquiry('${p.name}')">Enquire Now</button>
-            <button class="hover-btn-outline" onclick="whatsappProduct('${p.name}')">💬 WhatsApp</button>
-          </div>
+<div class="product-card">
+
+    <div class="product-img">
+        ${badgeHtml}
+
+        <img src="${p.image}" class="product-image">
+
+        <div class="product-img-num">
+            ${String(p.id).padStart(2,'0')}
         </div>
-        <div class="product-info">
-          <div class="product-category">${p.cat}</div>
-          <div class="product-name">${p.name}</div>
-          <div class="product-colors">${colorsHtml}</div>
+
+        <div class="product-hover-overlay">
+            <button class="hover-btn"
+            onclick="openEnquiry('${p.name}')">
+            Enquire Now
+            </button>
+
+            <button class="hover-btn-outline"
+            onclick="whatsappProduct('${p.name}')">
+            💬 WhatsApp
+            </button>
         </div>
-      </div>
-    `;
+    </div>
+
+    <div class="product-info">
+        <div class="product-category">${p.cat}</div>
+        <div class="product-name">${p.name}</div>
+        <div class="product-colors">${colorsHtml}</div>
+    </div>
+
+</div>
+`;
   }).join('');
 
   const btn = document.getElementById('loadMoreBtn');
@@ -1428,12 +1202,12 @@ function loadMore() {
 
 function whatsappProduct(name) {
   const msg = encodeURIComponent(`Hi STREAKZ! I'm interested in the *${name}*. Please share more details.`);
-  window.open(`https://wa.me/919999999999?text=${msg}`, '_blank');
+  window.open(`https://wa.me/919069474777?text=${msg}`, '_blank');
 }
 
 function openEnquiry(name) {
   const msg = encodeURIComponent(`Hi STREAKZ! I'd like to enquire about the *${name}*. Please help me with availability and sizing.`);
-  window.open(`https://wa.me/919999999999?text=${msg}`, '_blank');
+  window.open(`https://wa.me/919069474777?text=${msg}`, '_blank');
 }
 
 // Initial render
